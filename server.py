@@ -10,16 +10,19 @@ def listenthread(c):
 	f = c.makefile()
 	print("Waiting for handshake...")
 	gl = f.readline()
+	print("Received: "+gl)
 	gs = gl.split(',')
 	dev = None
 	if len(gs) == 2:
 		try:
 			btns = []
-			for i in range(0, int(gs[0])):
+			# apparently uinput breaks without an axis
+			for i in range(0, max(1, int(gs[0]))):
 				btns.append((3, i))
 			for i in range(0, int(gs[1])):
 				btns.append((1, 256+i))
-			dev = uinput.Device(btns)
+			print(btns)
+			dev = uinput.Device(btns, "Netpad2-"+gs[0]+"-"+gs[1])
 			send(c, 'OK')
 		except:
 			traceback.print_exc()
