@@ -172,6 +172,8 @@ public class Main {
                             else {
                                 av[i] += a;
                             }
+                            // because some computers are annoying
+                            av[i] = Math.max(Math.min(av[i], 1), -1);
                             bw.write("A"+i+":"+av[i]+"\n");
                         }
                     }
