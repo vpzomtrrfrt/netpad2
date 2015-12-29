@@ -68,6 +68,7 @@ public class Main {
                             os = sock.getOutputStream();
                             break;
                         } catch (Exception e1) {
+                            e1.printStackTrace();
                             JOptionPane.showMessageDialog(null, e1.getMessage(), "Connection Error", JOptionPane.ERROR_MESSAGE);
                         }
                     }
@@ -101,8 +102,9 @@ public class Main {
                             for(Pair<Integer> a : axis) {
                                 sw.write(a.getFirst()+","+a.getLast()+"\n");
                             }
-                            fos.close();
+                            sw.close();
                         } catch(Exception e2) {
+                            e2.printStackTrace();
                             JOptionPane.showMessageDialog(null, e2.getMessage(), "Save Failure", JOptionPane.ERROR_MESSAGE);
                         }
                     }
@@ -116,6 +118,7 @@ public class Main {
             cfgFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         }
         catch(Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SubConfigPanel<T> extends JPanel {
     private volatile Integer tr = -1;
-    private JList<T> list;
+    private JList<String> list;
     private DefaultListModel<T> listModel;
     public SubConfigPanel(final T[] things, final boolean p) {
         super(new BorderLayout());
@@ -18,7 +18,7 @@ public class SubConfigPanel<T> extends JPanel {
         for(T thing : things) {
             listModel.addElement(thing);
         }
-        list = new JList<T>(listModel);
+        list = new JList<String>(new KeyListModelWrapper(listModel));
         JPanel btnPanel = new JPanel();
         JButton addBtn = new JButton("+");
         addBtn.addActionListener(new ActionListener() {
