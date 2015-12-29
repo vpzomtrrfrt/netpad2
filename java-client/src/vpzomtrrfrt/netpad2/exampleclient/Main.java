@@ -52,6 +52,7 @@ public class Main {
                 }
             }
             final JFrame cfgFrame = new JFrame();
+            cfgFrame.setSize(400, 500);
             final ConfigPanel cfgPanel = new ConfigPanel(btns, axis);
             cfgFrame.add(cfgPanel);
             JPanel cfgBtns = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -60,9 +61,9 @@ public class Main {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     cfgFrame.setVisible(false);
-                    String addr = JOptionPane.showInputDialog("Enter server address:");
                     OutputStream os;
                     while(true) {
+                        String addr = JOptionPane.showInputDialog("Enter server address:");
                         try {
                             Socket sock = new Socket(addr, 4242);
                             os = sock.getOutputStream();
